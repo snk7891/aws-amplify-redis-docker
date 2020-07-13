@@ -1,4 +1,5 @@
-FROM alpine
+FROM ubuntu:latest
 
-RUN apk add curl git openssh nodejs npm redis
-RUN curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && ./aws/install
+RUN apt-get update
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install curl git nodejs npm redis
+CMD redis-server --daemonize yes && /bin/bash
